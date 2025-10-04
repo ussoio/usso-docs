@@ -1,0 +1,55 @@
+name: Deploy Docs
+
+on:
+  push:
+    branches:
+      - main # Your main branch name
+
+jobs:
+  # 1. Build job: Create the MkDocs site and upload it as an artifact
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # Recommended for MkDocs when using specific themes/plugins
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Build MkDocs site
+        # This command runs MkDocs and puts the output in the 'site' directory
+        run: mkdocs build
+      
+      - name: Upload artifact
+        # This action uploads the 'site' directory for the Pages deployment job
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./site
+
+  # 2. Deploy job: Take the uploaded artifact and publish it to GitHub Pages
+  deploy:
+    # This job must wait for the build job to complete successfully
+    needs: build
+    runs-on: ubuntu-latest
+
+    # 🛑 CRITICAL: Correct permissions for the new Pages Actions
+    permissions:
+      contents: read
+      pages: write  # Grants permission to create deployments
+      id-token: write # Required for the OIDC token used by deploy-pages
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        # 🛑 CRITICAL: Use the official deployment action
+        uses: actions/deploy-pages@v4
