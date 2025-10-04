@@ -1,0 +1,14 @@
+# MkDocs and theme
+mkdocs>=1.5.0
+mkdocs-material>=9.5.0
+
+# Markdown extensions
+pymdown-extensions>=10.7
+
+# Code documentation
+mkdocstrings>=0.24.0
+mkdocstrings-python>=1.8.0
+
+# Additional plugins
+mkdocs-mermaid2-plugin>=1.1.0
+

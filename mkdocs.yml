@@ -1,0 +1,148 @@
+site_name: USSO API
+site_description: Documentation for the USSO authentication and authorization platform
+site_author: USSO Team
+
+repo_url: https://github.com/ussoio/usso-sso
+repo_name: ussoio/usso-sso
+
+theme:
+  name: material
+  palette:
+    - scheme: default
+      primary: teal
+      accent: amber
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+    - scheme: slate
+      primary: teal
+      accent: amber
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode
+  features:
+    # - navigation.tabs
+    # - navigation.sections
+    - search.highlight
+    - content.tabs.link
+    - content.code.copy
+    - content.code.annotate
+  language: en
+  highlightjs: true
+  highlightjs_languages:
+    - python
+    - javascript
+    - typescript
+    - bash
+    - yaml
+
+nav:
+  - Home: index.md
+  - Getting Started:
+    - Overview: getting-started/overview.md
+    - Quick Start: getting-started/quickstart.md
+    - Installation: getting-started/installation.md
+    - First Steps: getting-started/first-steps.md
+  - Core Concepts:
+    - Architecture: concepts/architecture.md
+    - Multi-Tenancy: concepts/multi-tenancy.md
+    - Authentication vs Authorization: concepts/auth-vs-authz.md
+    - Tokens & Sessions: concepts/tokens-sessions.md
+    - Workspaces & Roles: concepts/workspaces-roles.md
+  - Authentication:
+    - Overview: authentication/overview.md
+    - Login Methods: authentication/login-methods.md
+    - Password Login: authentication/password.md
+    - Magic Link: authentication/magic-link.md
+    - OTP (SMS/Email): authentication/otp.md
+    - OAuth/OIDC: authentication/oauth.md
+    - Passkeys (WebAuthn): authentication/passkeys.md
+    - QR Code Login: authentication/qr-login.md
+  - Authorization:
+    - Overview: authorization/overview.md
+    - Roles & Permissions: authorization/roles-permissions.md
+    - Scopes: authorization/scopes.md
+    - Workspace Access: authorization/workspace-access.md
+    - Custom Policies: authorization/custom-policies.md
+  - User Management:
+    - Users: user-management/users.md
+    - Profiles: user-management/profiles.md
+    - Sessions: user-management/sessions.md
+    - Credentials: user-management/credentials.md
+    - Referrals: user-management/referrals.md
+  - Service Accounts:
+    - Overview: service-accounts/overview.md
+    - Creating Agents: service-accounts/creating-agents.md
+    - API Keys: service-accounts/api-keys.md
+    - Best Practices: service-accounts/best-practices.md
+  - OAuth Provider:
+    - Overview: oauth-provider/overview.md
+    - Setting Up: oauth-provider/setup.md
+    - Client Registration: oauth-provider/clients.md
+    - Authorization Flow: oauth-provider/flows.md
+    - Token Introspection: oauth-provider/introspection.md
+  - Tenant Management:
+    - Overview: tenant/overview.md
+    - Configuration: tenant/configuration.md
+    - Domains: tenant/domains.md
+    - Branding: tenant/branding.md
+    - Messaging: tenant/messaging.md
+    - Key Management: tenant/keys.md
+  - Integration:
+    - Python SDK: integration/python-sdk.md
+    - JavaScript SDK: integration/javascript-sdk.md
+    - REST API: integration/rest-api.md
+    - Webhooks: integration/webhooks.md
+  - Security:
+    - Best Practices: security/best-practices.md
+    - Captcha & Risk: security/captcha.md
+    - Rate Limiting: security/rate-limiting.md
+    - Token Security: security/token-security.md
+  - Deployment:
+    - Docker: deployment/docker.md
+    - Environment Variables: deployment/environment.md
+    - Production Setup: deployment/production.md
+    - Monitoring: deployment/monitoring.md
+  - API Reference:
+    - Authentication API: api/authentication.md
+    - User API: api/users.md
+    - Tenant API: api/tenants.md
+    - OAuth API: api/oauth.md
+  - Roadmap: roadmap.md
+  - FAQ: faq.md
+  - Contributing: contributing.md
+
+
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - admonition
+  - toc:
+      permalink: true
+  - tables
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
+
+plugins:
+  - search
+  - mkdocstrings:
+      handlers:
+        python:
+          options:
+            docstring_style: google
+  - mermaid2
+
+extra_css:
+  - assets/extra.css
